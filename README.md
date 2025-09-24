@@ -4,12 +4,12 @@
 
 ## Overview  
 **AlumConnect** is a centralized web platform connecting **students, alumni, and college administrators** to foster career growth, mentorship, and collaborative events.  
-It acts as a **one-stop hub** for jobs, internships, mentorship, projects, and event engagement — ensuring smooth communication, networking, and transparent progress tracking.  
+It acts as a **one-stop hub** for jobs, internships, mentorship, projects, and event engagement — ensuring smooth communication, networking, and transparent progress tracking amongst students and graduatees.  
 
 ---
 
 ##  Proposed Solution  
-- Bridge the gap between students, alumni, and administration by eliminating scattered resources.  
+- Bridge the gap between students and alumni, by eliminating scattered resources and enabling a collaborative environment to interact and collaborated with the graduatees.  
 - Enhance employability through alumni-driven referrals, internships, and industry mentorship.  
 - Provide admin oversight with dashboards for events, fundraising, and career tracking.  
 
