@@ -30,25 +30,26 @@ It acts as a **one-stop hub** for jobs, internships, mentorship, projects, and e
 **Languages & Runtime**  
 - JavaScript – Core frontend & backend language  
 - Node.js – Server-side runtime  
-- Python – AI chatbot (NLP integration)  
+- Python – AI chatbot (NLP integration) and 
 
 **Frameworks & Libraries**  
 - React.js – Frontend, role-based dashboards, responsive UI  
 - Express.js – Backend REST APIs, authentication, routing  
 - MongoDB – NoSQL database for users, jobs, mentorship data  
 - Socket.IO – Real-time messaging & event updates  
-- TailwindCSS / Bootstrap – Modern responsive styling  
+- TailwindCSS / Bootstrap – Modern responsive styling
+- Voiceflow - AI model training
 
 **AI & Integrations**  
-- OpenAI API – AI chatbot for FAQs, mentorship, career guidance  
+- GPT 4o – AI chatbot for FAQs, mentorship, career guidance  
 - Recommendation Engine (ML) – Job & internship recommendations  
-- Razorpay – Event fundraising & donations  
+- Razorpay – Event fundraising ,crowdfunding & donations  
 
 **Deployment & Methodology**  
-- JWT Authentication & Role-based dashboards  
+- Role-based dashboards  
 - Cloud hosting (Vercel / Render) with analytics  
-- Modular architecture for scalability  
-- QA testing and CI/CD pipelines  
+- Modular architecture for scalability in  the future
+- FAQ testing and CI/CD pipelines  
 
 ---
 
@@ -80,7 +81,7 @@ It acts as a **one-stop hub** for jobs, internships, mentorship, projects, and e
 - Participate in startup & project hubs  
 
 **For Institutions**  
-- Better placement stats via alumni-driven hiring  
+- Better placement stats via alumni-driven hiring and referrals
 - Improved alumni relations & fundraising  
 - Enhanced reputation and networking ecosystem  
 
