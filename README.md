@@ -1,6 +1,6 @@
 # AlumConnect  
 
-**SMART INDIA HACKATHON 2025 – Team BugSlayers**  
+**SMART INDIA HACKATHON 2025 – Team Vakratund**  
 
 ## Overview  
 **AlumConnect** is a centralized web platform connecting **students, alumni, and college administrators** to foster career growth, mentorship, and collaborative events.  
