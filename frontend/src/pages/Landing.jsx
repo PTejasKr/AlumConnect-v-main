@@ -79,6 +79,17 @@ const TimelineItem = ({ number, title, description }) => (
 
 export default function Landing() {
   const location = useLocation();
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const totalSlides = 7; // We have 7 slides
+
+  // Auto-advance slides every 5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % totalSlides);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     // Scroll to the section specified in the hash
@@ -92,6 +103,18 @@ export default function Landing() {
       }
     }
   }, [location]);
+
+  const goToSlide = (slideIndex) => {
+    setCurrentSlide(slideIndex);
+  };
+
+  const nextSlide = () => {
+    setCurrentSlide((prevSlide) => (prevSlide + 1) % totalSlides);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prevSlide) => (prevSlide - 1 + totalSlides) % totalSlides);
+  };
 
   return (
     <div
@@ -140,7 +163,7 @@ export default function Landing() {
                 <span className="block mt-2 text-white drop-shadow-lg">समाजस्या</span>
               </h1>
               <p className="mt-4 sm:mt-5 text-base sm:text-lg text-white/90 max-w-xl mx-auto lg:mx-0 drop-shadow-lg">
-                A comprehensive digital platform to centralize alumni data, strengthen institutional relationships, and unlock opportunities for mentorship, fundraising, and career growth.
+                A digital platform to centralize alumni data, strengthen institutional relationships, and unlock opportunities for mentorship, fundraising, and career growth.
               </p>
 
               <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
@@ -166,34 +189,102 @@ export default function Landing() {
               </div>
             </div>
 
-            {/* Right: Visual Graphic - ENHANCED */}
-            <div className="hidden lg:flex justify-center items-center">
-              <div className="relative w-96 h-96">
-                {/* Central radial gradient */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full rounded-full" style={{background: `radial-gradient(circle, rgba(${brand.lilac},0.2), transparent 65%)`}} />
-
-                {/* Floating Icon Cards */}
-                <div className="absolute top-0 left-12 w-32 h-32 bg-white/80 backdrop-blur-sm border border-slate-200 rounded-2xl shadow-lg flex items-center justify-center transform rotate-[-15deg] hover:rotate-0 transition-transform">
-                  <Database className="w-14 h-14" style={{color: `rgb(${brand.indigo})`}} />
-                </div>
-                <div className="absolute bottom-8 left-0 w-36 h-36 bg-white/80 backdrop-blur-sm border border-slate-200 rounded-2xl shadow-lg flex items-center justify-center transform rotate-[10deg] hover:rotate-0 transition-transform">
-                  <Users className="w-16 h-16" style={{color: `rgb(${brand.coral})`}} />
-                </div>
-                <div className="absolute top-12 right-0 w-40 h-40 bg-white/80 backdrop-blur-sm border border-slate-200 rounded-2xl shadow-lg flex items-center justify-center transform rotate-[15deg] hover:rotate-0 transition-transform">
-                  <Briefcase className="w-16 h-16" style={{color: `rgb(${brand.lilac})`}} />
-                </div>
-                
-                {/* Additional Floating Icons */}
-                <div className="absolute top-20 left-[-2rem] w-24 h-24 bg-white/80 backdrop-blur-sm border border-slate-200 rounded-2xl shadow-lg flex items-center justify-center transform rotate-[20deg] hover:rotate-0 transition-transform">
-                  <TrendingUp className="w-10 h-10" style={{color: `rgb(${brand.indigo})`}} />
-                </div>
-                <div className="absolute bottom-16 right-[-1rem] w-28 h-28 bg-white/80 backdrop-blur-sm border border-slate-200 rounded-2xl shadow-lg flex items-center justify-center transform rotate-[-10deg] hover:rotate-0 transition-transform">
-                  <CalendarDays className="w-12 h-12" style={{color: `rgb(${brand.coral})`}} />
-                </div>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-white/80 backdrop-blur-sm border border-slate-200 rounded-full shadow-lg flex items-center justify-center transform hover:scale-110 transition-transform">
-                  <ShieldCheck className="w-10 h-10" style={{color: `rgb(${brand.lilac})`}} />
+            {/* Right: Image Slideshow */}
+            <div className="hidden lg:flex justify-center items-center relative">
+              <button 
+                className="absolute left-0 z-20 bg-white/80 backdrop-blur-sm rounded-full p-3 shadow-lg hover:bg-white transition-all"
+                style={{ color: `rgb(${brand.indigo})`, transform: 'translateX(-50%)' }}
+                onClick={prevSlide}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              
+              <div className="w-full max-w-lg h-96 rounded-2xl overflow-hidden">
+                <div className="relative w-full h-full">
+                  {/* Slideshow container */}
+                  <div className="w-full h-full overflow-hidden rounded-xl">
+                    <img 
+                      src="/images/camilo-botia-k4vFDPJoDZk-unsplash.jpg" 
+                      alt="Campus Life" 
+                      className={`w-full h-full object-cover transition-opacity duration-1000 ${currentSlide === 0 ? 'opacity-100' : 'opacity-0'}`}
+                    />
+                    <img 
+                      src="/images/dom-fou-YRMWVcdyhmI-unsplash.jpg" 
+                      alt="University Building" 
+                      className={`w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-1000 ${currentSlide === 1 ? 'opacity-100' : 'opacity-0'}`}
+                    />
+                    <img 
+                      src="/images/erika-fletcher-MZxqc6n9qCw-unsplash.jpg" 
+                      alt="Student Gathering" 
+                      className={`w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-1000 ${currentSlide === 2 ? 'opacity-100' : 'opacity-0'}`}
+                    />
+                    <img 
+                      src="/images/k-mitch-hodge-oIPMwJFd-t0-unsplash.jpg" 
+                      alt="Campus View" 
+                      className={`w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-1000 ${currentSlide === 3 ? 'opacity-100' : 'opacity-0'}`}
+                    />
+                    <img 
+                      src="/images/mauricio-arias-h6QQiYftoO0-unsplash.jpg" 
+                      alt="Alumni Event" 
+                      className={`w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-1000 ${currentSlide === 4 ? 'opacity-100' : 'opacity-0'}`}
+                    />
+                    <img 
+                      src="/images/michael-marsh-U0dBV_QeiYk-unsplash.jpg" 
+                      alt="Study Session" 
+                      className={`w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-1000 ${currentSlide === 5 ? 'opacity-100' : 'opacity-0'}`}
+                    />
+                    <img 
+                      src="/images/parker-gibbons-kfwPJieZVwI-unsplash.jpg" 
+                      alt="University Campus" 
+                      className={`w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-1000 ${currentSlide === 6 ? 'opacity-100' : 'opacity-0'}`}
+                    />
+                  </div>
+                  
+                  {/* Slide indicators */}
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-10">
+                    <button 
+                      className={`w-3 h-3 rounded-full transition-all ${currentSlide === 0 ? 'bg-white' : 'bg-white/80 hover:bg-white'}`} 
+                      onClick={() => goToSlide(0)}
+                    ></button>
+                    <button 
+                      className={`w-3 h-3 rounded-full transition-all ${currentSlide === 1 ? 'bg-white' : 'bg-white/80 hover:bg-white'}`} 
+                      onClick={() => goToSlide(1)}
+                    ></button>
+                    <button 
+                      className={`w-3 h-3 rounded-full transition-all ${currentSlide === 2 ? 'bg-white' : 'bg-white/80 hover:bg-white'}`} 
+                      onClick={() => goToSlide(2)}
+                    ></button>
+                    <button 
+                      className={`w-3 h-3 rounded-full transition-all ${currentSlide === 3 ? 'bg-white' : 'bg-white/80 hover:bg-white'}`} 
+                      onClick={() => goToSlide(3)}
+                    ></button>
+                    <button 
+                      className={`w-3 h-3 rounded-full transition-all ${currentSlide === 4 ? 'bg-white' : 'bg-white/80 hover:bg-white'}`} 
+                      onClick={() => goToSlide(4)}
+                    ></button>
+                    <button 
+                      className={`w-3 h-3 rounded-full transition-all ${currentSlide === 5 ? 'bg-white' : 'bg-white/80 hover:bg-white'}`} 
+                      onClick={() => goToSlide(5)}
+                    ></button>
+                    <button 
+                      className={`w-3 h-3 rounded-full transition-all ${currentSlide === 6 ? 'bg-white' : 'bg-white/80 hover:bg-white'}`} 
+                      onClick={() => goToSlide(6)}
+                    ></button>
+                  </div>
                 </div>
               </div>
+              
+              <button 
+                className="absolute right-0 z-20 bg-white/80 backdrop-blur-sm rounded-full p-3 shadow-lg hover:bg-white transition-all"
+                style={{ color: `rgb(${brand.indigo})`, transform: 'translateX(50%)' }}
+                onClick={nextSlide}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
             </div>
           </div>
       </section>
@@ -242,16 +333,16 @@ export default function Landing() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <div className="text-center lg:text-left">
               <p className="font-semibold text-sm" style={{color: `rgb(${brand.indigo})`}}>SIH 2025 SOLUTION</p>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mt-2">Comprehensive Alumni Management</h2>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mt-2">Digital Alumni Platform</h2>
               <p className="mt-4 text-slate-600 text-sm sm:text-base">Our platform addresses the critical need for centralized alumni data management, providing institutions with tools to strengthen relationships, track career progress, and facilitate meaningful connections.</p>
             </div>
             <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
-              <ValueProp icon={<Database className="w-5 h-5" style={{color: `rgb(${brand.indigo})`}} />}>Centralized Data Storage</ValueProp>
+              <ValueProp icon={<Database className="w-5 h-5" style={{color: `rgb(${brand.indigo})`}} />}>Centralized Data Management</ValueProp>
               <ValueProp icon={<ShieldCheck className="w-5 h-5" style={{color: `rgb(${brand.indigo})`}} />}>Secure & Private Platform</ValueProp>
               <ValueProp icon={<TrendingUp className="w-5 h-5" style={{color: `rgb(${brand.indigo})`}} />}>Career Progress Tracking</ValueProp>
               <ValueProp icon={<CalendarDays className="w-5 h-5" style={{color: `rgb(${brand.indigo})`}} />}>Event Management System</ValueProp>
               <ValueProp icon={<Users className="w-5 h-5" style={{color: `rgb(${brand.indigo})`}} />}>Networking & Communication</ValueProp>
-              <ValueProp icon={<Award className="w-5 h-5" style={{color: `rgb(${brand.indigo})`}} />}>Alumni Achievement Tracking</ValueProp>
+              <ValueProp icon={<Award className="w-5 h-5" style={{color: `rgb(${brand.indigo})`}} />}>Alumni Engagement</ValueProp>
             </div>
           </div>
         </section>
@@ -261,44 +352,44 @@ export default function Landing() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="text-center mb-8 sm:mb-12">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900">Key Solution Features</h2>
-              <p className="mt-2 text-base sm:text-lg text-slate-600">Addressing every aspect of alumni data management and engagement.</p>
+              <p className="mt-2 text-base sm:text-lg text-slate-600">Addressing every aspect of centralized alumni data management and engagement.</p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               <FeatureCard
-                title="Centralized Database"
+                title="Centralized Data Platform"
                 icon={<Database className="w-6 h-6 sm:w-8 sm:h-8" style={{ color: `rgb(${brand.indigo})` }} />}
               >
-                Store and manage all alumni data in one secure, searchable platform with automated updates and verification systems.
+                Secure, centralized platform to store and manage all alumni data with automated updates and verification systems.
               </FeatureCard>
               <FeatureCard
                 title="Communication Hub"
                 icon={<Users className="w-6 h-6 sm:w-8 sm:h-8" style={{ color: `rgb(${brand.coral})` }} />}
               >
-                Replace scattered WhatsApp groups with professional networking tools, announcements, and targeted communication.
+                Professional networking tools to replace informal WhatsApp groups, with announcements and targeted communication.
               </FeatureCard>
               <FeatureCard
-                title="Career & Mentorship Tracking"
+                title="Career Progress Tracking"
                 icon={<TrendingUp className="w-6 h-6 sm:w-8 sm:h-8" style={{ color: `rgb(${brand.lilac})` }} />}
               >
-                Track alumni career progress, facilitate mentorship connections, and create opportunities for current students.
+                Track alumni career progress and achievements to create opportunities for current students and institutional growth.
+              </FeatureCard>
+              <FeatureCard
+                title="Mentorship Matching"
+                icon={<CalendarDays className="w-6 h-6 sm:w-8 sm:h-8" style={{ color: `rgb(${brand.indigo})` }} />}
+              >
+                Facilitate mentorship connections between alumni and current students for career guidance and professional development.
               </FeatureCard>
               <FeatureCard
                 title="Event Management"
-                icon={<CalendarDays className="w-6 h-6 sm:w-8 sm:h-8" style={{ color: `rgb(${brand.indigo})` }} />}
-              >
-                Organize reunions, webinars, and networking events with integrated registration, attendance tracking, and feedback.
-              </FeatureCard>
-              <FeatureCard
-                title="Fundraising Platform"
                 icon={<Award className="w-6 h-6 sm:w-8 sm:h-8" style={{ color: `rgb(${brand.coral})` }} />}
               >
-                Enable transparent donation tracking, campaign management, and donor recognition for institutional development.
+                Organize reunions, webinars, and networking events with integrated registration and attendance tracking.
               </FeatureCard>
               <FeatureCard
-                title="Analytics Dashboard"
+                title="Fundraising & Donations"
                 icon={<Globe className="w-6 h-6 sm:w-8 sm:h-8" style={{ color: `rgb(${brand.lilac})` }} />}
               >
-                Comprehensive reporting on alumni engagement, career outcomes, donation patterns, and institutional impact metrics.
+                Transparent donation tracking and campaign management to enhance institutional fundraising potential.
               </FeatureCard>
             </div>
           </div>
@@ -311,18 +402,18 @@ export default function Landing() {
             <div className="space-y-12 sm:space-y-16">
               <TimelineItem 
                 number="1" 
-                title="Data Migration & Setup" 
-                description="Import existing alumni data from various sources, set up institutional profiles, and configure admin access controls." 
+                title="Centralized Data Setup" 
+                description="Import existing alumni data from scattered sources, set up institutional profiles, and configure secure access controls." 
               />
               <TimelineItem 
                 number="2" 
                 title="Alumni Verification & Onboarding" 
-                description="Verify alumni credentials, send secure invitations, and guide users through profile completion and privacy settings." 
+                description="Verify alumni credentials through secure channels and guide users through profile completion and privacy settings." 
               />
               <TimelineItem 
                 number="3" 
-                title="Engagement & Growth" 
-                description="Launch communication campaigns, organize events, facilitate mentorship matching, and track engagement metrics." 
+                title="Engagement & Relationship Building" 
+                description="Launch communication campaigns, connect alumni with current students, and track engagement and career outcomes." 
               />
             </div>
           </div>
@@ -389,7 +480,7 @@ export default function Landing() {
                      style={{ color: '#c25f3a' }}>
                   AlumConnect
                 </div>
-                <p className="mt-2 text-sm">SIH 2025 Solution for Centralized Alumni Data Management and Engagement</p>
+                <p className="mt-2 text-sm">SIH 2025 Solution for Digital Platform for Centralized Alumni Data Management and Engagement</p>
                 <div className="mt-4 flex space-x-4">
                   <a href="#" className="text-slate-400 hover:text-slate-500"><Twitter className="w-5 h-5" /></a>
                   <a href="#" className="text-slate-400 hover:text-slate-500"><Linkedin className="w-5 h-5" /></a>
