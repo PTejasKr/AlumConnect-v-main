@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import AlumniNavbar from "../../layouts/AlumniNavbar";
+import AlumniNavbar from "../../components/navigation/AlumniNavbar";
 import { getCurrentUser } from "../../utils/auth";
 import { alumniProfiles } from "../../data/alumni";
 import {

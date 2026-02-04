@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import StudentNavbar from "../../layouts/StudentNavbar";
+import StudentNavbar from "../../components/navigation/StudentNavbar";
 import { getCurrentUser } from "../../utils/auth";
 import { studentProfiles } from "../../data/students";
 import { recentEvents } from "../../data/adminMockData";

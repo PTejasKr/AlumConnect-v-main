@@ -1,15 +1,15 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
-  GraduationCap, Home, Users, Calendar, Briefcase, User, 
+  GraduationCap, Home, Users, Calendar, Briefcase, User,
   LogOut, Menu, X, Bell
 } from "lucide-react";
-import { logout, getCurrentUser } from "../utils/auth";
+import { logout, getCurrentUser } from "../../utils/auth";
 
 const brand = {
   indigo: '153 102 204',   // #9966CC
-  lilac:  '196 160 255',  // #C4A0FF
-  coral:  '255 145 120',  // #FF9178
+  lilac: '196 160 255',  // #C4A0FF
+  coral: '255 145 120',  // #FF9178
 };
 
 export default function AlumniNavbar() {
@@ -76,8 +76,8 @@ export default function AlumniNavbar() {
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
             <Link to="/alumni/dashboard" className="flex items-center gap-2">
-              <GraduationCap 
-                className="w-8 h-8" 
+              <GraduationCap
+                className="w-8 h-8"
                 style={{ color: `rgb(${brand.indigo})` }}
               />
               <span
@@ -98,12 +98,11 @@ export default function AlumniNavbar() {
                 <Link
                   key={item.name}
                   to={item.href}
-                  className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
-                    isActive
+                  className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all ${isActive
                       ? 'text-white shadow-lg'
                       : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
-                  }`}
-                  style={isActive 
+                    }`}
+                  style={isActive
                     ? { backgroundColor: '#9966CC' }
                     : {}
                   }
@@ -119,7 +118,7 @@ export default function AlumniNavbar() {
           <div className="hidden md:flex items-center gap-4">
             {/* NEW: Notification Button with Dropdown */}
             <div className="relative" ref={notificationsRef}>
-              <button 
+              <button
                 onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}
                 className="p-2 text-slate-600 hover:text-slate-900 relative"
               >
@@ -130,7 +129,7 @@ export default function AlumniNavbar() {
                   </span>
                 )}
               </button>
-              
+
               {isNotificationsOpen && (
                 <div className="absolute top-12 right-0 w-80 bg-white border border-slate-200 rounded-xl shadow-lg p-4 z-50">
                   <div className="flex justify-between items-center mb-4">
@@ -154,13 +153,13 @@ export default function AlumniNavbar() {
                 </div>
               )}
             </div>
-            
+
             <div className="flex items-center gap-3">
               <Link to="/alumni/profile" className="text-right">
                 <p className="text-sm font-medium text-slate-900">{user?.name}</p>
                 <p className="text-xs text-slate-500">Alumni</p>
               </Link>
-              <Link 
+              <Link
                 to="/alumni/profile"
                 className="w-8 h-8 rounded-full flex items-center justify-center text-white font-semibold text-sm"
                 style={{ backgroundColor: '#9966CC' }}
@@ -209,7 +208,7 @@ export default function AlumniNavbar() {
                     )}
                   </div>
                 )}
-                
+
                 {navItems.map((item) => {
                   const Icon = item.icon;
                   const isActive = location.pathname === item.href;
@@ -218,12 +217,11 @@ export default function AlumniNavbar() {
                       key={item.name}
                       to={item.href}
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className={`flex items-center gap-3 px-4 py-3 rounded-lg text-base font-medium transition-all ${
-                        isActive
+                      className={`flex items-center gap-3 px-4 py-3 rounded-lg text-base font-medium transition-all ${isActive
                           ? 'text-white shadow-lg'
                           : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
-                      }`}
-                      style={isActive 
+                        }`}
+                      style={isActive
                         ? { backgroundColor: '#9966CC' }
                         : {}
                       }
@@ -233,7 +231,7 @@ export default function AlumniNavbar() {
                     </Link>
                   );
                 })}
-                
+
                 <div className="border-t border-slate-200 pt-2 mt-2">
                   <Link
                     to="/alumni/profile"
@@ -243,7 +241,7 @@ export default function AlumniNavbar() {
                     <User className="w-5 h-5" />
                     Profile
                   </Link>
-                  
+
                   <button
                     onClick={() => {
                       handleLogout();

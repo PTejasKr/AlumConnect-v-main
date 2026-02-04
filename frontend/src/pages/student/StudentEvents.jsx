@@ -1,5 +1,5 @@
 import { useState } from "react";
-import StudentNavbar from "../../layouts/StudentNavbar";
+import StudentNavbar from "../../components/navigation/StudentNavbar";
 import { recentEvents } from "../../data/adminMockData";
 import {
   Calendar, MapPin, Users, Clock, Filter, Search, CheckCircle, ChevronDown, X, Check

@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import StudentNavbar from "../../layouts/StudentNavbar";
+import StudentNavbar from "../../components/navigation/StudentNavbar";
 import { alumniProfiles } from "../../data/alumni";
 import { studentProfiles } from "../../data/students";
 import {

@@ -1,79 +1,18 @@
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Navbar from "../layouts/Navbar";
+import Navbar from "../components/navigation/Navbar";
 import colleges from "../data/colleges";
+import { brand } from "../config/brand";
+import ValueProp from "../components/landing/ValueProp";
+import FeatureCard from "../components/landing/FeatureCard";
+import CollegeCard from "../components/landing/CollegeCard";
+import TimelineItem from "../components/landing/TimelineItem";
 import {
-  GraduationCap, Users, ArrowRight, Briefcase, Link2,
-  Sparkles, CalendarDays, Building2, Target, ShieldCheck,
-  CheckCircle, Twitter, Linkedin, Instagram, Database,
+  GraduationCap, Users, ArrowRight, Briefcase,
+  Sparkles, CalendarDays, Building2, ShieldCheck,
+  Twitter, Linkedin, Instagram, Database,
   TrendingUp, Globe, Award
 } from "lucide-react";
-
-// Brand colors from your logo
-const brand = {
-  indigo: '153 102 204',   // #9966CC
-  lilac:  '196 160 255',  // #C4A0FF
-  coral:  '255 145 120',  // #FF9178
-};
-
-// --- Reusable Components ---
-
-const ValueProp = ({ icon, children }) => (
-  <div className="flex items-center gap-3">
-    <div className="flex-shrink-0">{icon}</div>
-    <span className="text-slate-700 text-sm sm:text-base">{children}</span>
-  </div>
-);
-
-const FeatureCard = ({ icon, title, children }) => (
-  <div className="bg-white border border-slate-200/80 rounded-2xl p-4 sm:p-6 text-center shadow-sm hover:shadow-xl transition-all transform hover:-translate-y-1.5">
-    <div className="flex justify-center mb-3 sm:mb-4">
-      <div
-        className="p-3 sm:p-4 rounded-full"
-        style={{
-          background: `rgba(${brand.lilac}, 0.15)`,
-          boxShadow: `inset 0 0 0 1px rgba(${brand.indigo}, 0.2)`
-        }}
-      >
-        {icon}
-      </div>
-    </div>
-    <h3 className="text-lg font-semibold text-slate-900 mb-2">{title}</h3>
-    <p className="text-sm text-slate-600">{children}</p>
-  </div>
-);
-
-const CollegeCard = ({ name, desc, image }) => (
-  <div className="group rounded-2xl overflow-hidden bg-white border border-slate-200 shadow-sm hover:shadow-2xl hover:border-slate-300 transition-all transform hover:-translate-y-1.5">
-    <img src={image} alt={name} className="w-full h-40 sm:h-48 object-cover" />
-    <div className="p-4 sm:p-5">
-      <h3 className="text-base sm:text-lg font-semibold text-slate-900 line-clamp-1">{name}</h3>
-      <p className="text-sm text-slate-600 mt-1 line-clamp-2">{desc}</p>
-      <Link
-        to="/explore"
-        className="mt-3 inline-flex items-center gap-2 text-sm font-semibold"
-        style={{ color: `rgb(${brand.indigo})` }}
-      >
-        Explore More <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-      </Link>
-    </div>
-  </div>
-);
-
-const TimelineItem = ({ number, title, description }) => (
-  <div className="flex items-start gap-4 sm:gap-5">
-    <div
-      className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center font-bold text-base sm:text-lg text-white shadow-lg"
-      style={{ backgroundColor: '#9966CC' }}
-    >
-      {number}
-    </div>
-    <div>
-      <h4 className="text-lg sm:text-xl font-semibold text-slate-900">{title}</h4>
-      <p className="mt-1 text-slate-600 text-sm sm:text-base">{description}</p>
-    </div>
-  </div>
-);
 
 // --- Main Landing Page Component ---
 
@@ -129,28 +68,28 @@ export default function Landing() {
         {/* --- Hero Section --- */}
         <section className="px-4 sm:px-6 pt-8 sm:pt-16 pb-12 sm:pb-20 relative">
           {/* Background Image */}
-          <div 
+          <div
             className="absolute inset-0 bg-cover bg-center z-0"
-            style={{ 
+            style={{
               backgroundImage: "url('/images/WhatsApp Image 2025-09-23 at 15.01.09_789f31d7.jpg')",
               backgroundBlendMode: 'overlay',
               backgroundColor: 'rgba(0, 0, 0, 0.6)'
             }}
           />
-          
+
           <div className="max-w-7xl mx-auto text-center lg:text-left grid lg:grid-cols-2 gap-8 lg:gap-12 items-center relative z-10">
             {/* Left: Content */}
             <div>
               {/* SVG Icons Row */}
               <div className="flex justify-center lg:justify-start gap-3 sm:gap-6 mb-4 sm:mb-5 flex-wrap">
-                <GraduationCap className="w-6 h-6 sm:w-8 sm:h-8" style={{color: `rgb(${brand.indigo})`}} />
-                <Users className="w-6 h-6 sm:w-8 sm:h-8" style={{color: `rgb(${brand.lilac})`}} />
-                <Briefcase className="w-6 h-6 sm:w-8 sm:h-8" style={{color: `rgb(${brand.coral})`}} />
-                <Sparkles className="w-6 h-6 sm:w-8 sm:h-8" style={{color: `rgb(${brand.lilac})`}} />
-                <ShieldCheck className="w-6 h-6 sm:w-8 sm:h-8" style={{color: `rgb(${brand.indigo})`}} />
-                <Database className="w-6 h-6 sm:w-8 sm:h-8" style={{color: `rgb(${brand.coral})`}} />
-                <CalendarDays className="w-6 h-6 sm:w-8 sm:h-8" style={{color: `rgb(${brand.indigo})`}} />
-                <Building2 className="w-6 h-6 sm:w-8 sm:h-8" style={{color: `rgb(${brand.lilac})`}} />
+                <GraduationCap className="w-6 h-6 sm:w-8 sm:h-8" style={{ color: `rgb(${brand.indigo})` }} />
+                <Users className="w-6 h-6 sm:w-8 sm:h-8" style={{ color: `rgb(${brand.lilac})` }} />
+                <Briefcase className="w-6 h-6 sm:w-8 sm:h-8" style={{ color: `rgb(${brand.coral})` }} />
+                <Sparkles className="w-6 h-6 sm:w-8 sm:h-8" style={{ color: `rgb(${brand.lilac})` }} />
+                <ShieldCheck className="w-6 h-6 sm:w-8 sm:h-8" style={{ color: `rgb(${brand.indigo})` }} />
+                <Database className="w-6 h-6 sm:w-8 sm:h-8" style={{ color: `rgb(${brand.coral})` }} />
+                <CalendarDays className="w-6 h-6 sm:w-8 sm:h-8" style={{ color: `rgb(${brand.indigo})` }} />
+                <Building2 className="w-6 h-6 sm:w-8 sm:h-8" style={{ color: `rgb(${brand.lilac})` }} />
               </div>
 
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter leading-tight text-white drop-shadow-2xl">
@@ -191,7 +130,7 @@ export default function Landing() {
 
             {/* Right: Image Slideshow */}
             <div className="hidden lg:flex justify-center items-center relative">
-              <button 
+              <button
                 className="absolute left-0 z-20 bg-white/80 backdrop-blur-sm rounded-full p-3 shadow-lg hover:bg-white transition-all"
                 style={{ color: `rgb(${brand.indigo})`, transform: 'translateX(-50%)' }}
                 onClick={prevSlide}
@@ -200,83 +139,83 @@ export default function Landing() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
               </button>
-              
+
               <div className="w-full max-w-lg h-96 rounded-2xl overflow-hidden">
                 <div className="relative w-full h-full">
                   {/* Slideshow container */}
                   <div className="w-full h-full overflow-hidden rounded-xl">
-                    <img 
-                      src="/images/camilo-botia-k4vFDPJoDZk-unsplash.jpg" 
-                      alt="Campus Life" 
+                    <img
+                      src="/images/camilo-botia-k4vFDPJoDZk-unsplash.jpg"
+                      alt="Campus Life"
                       className={`w-full h-full object-cover transition-opacity duration-1000 ${currentSlide === 0 ? 'opacity-100' : 'opacity-0'}`}
                     />
-                    <img 
-                      src="/images/dom-fou-YRMWVcdyhmI-unsplash.jpg" 
-                      alt="University Building" 
+                    <img
+                      src="/images/dom-fou-YRMWVcdyhmI-unsplash.jpg"
+                      alt="University Building"
                       className={`w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-1000 ${currentSlide === 1 ? 'opacity-100' : 'opacity-0'}`}
                     />
-                    <img 
-                      src="/images/erika-fletcher-MZxqc6n9qCw-unsplash.jpg" 
-                      alt="Student Gathering" 
+                    <img
+                      src="/images/erika-fletcher-MZxqc6n9qCw-unsplash.jpg"
+                      alt="Student Gathering"
                       className={`w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-1000 ${currentSlide === 2 ? 'opacity-100' : 'opacity-0'}`}
                     />
-                    <img 
-                      src="/images/k-mitch-hodge-oIPMwJFd-t0-unsplash.jpg" 
-                      alt="Campus View" 
+                    <img
+                      src="/images/k-mitch-hodge-oIPMwJFd-t0-unsplash.jpg"
+                      alt="Campus View"
                       className={`w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-1000 ${currentSlide === 3 ? 'opacity-100' : 'opacity-0'}`}
                     />
-                    <img 
-                      src="/images/mauricio-arias-h6QQiYftoO0-unsplash.jpg" 
-                      alt="Alumni Event" 
+                    <img
+                      src="/images/mauricio-arias-h6QQiYftoO0-unsplash.jpg"
+                      alt="Alumni Event"
                       className={`w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-1000 ${currentSlide === 4 ? 'opacity-100' : 'opacity-0'}`}
                     />
-                    <img 
-                      src="/images/michael-marsh-U0dBV_QeiYk-unsplash.jpg" 
-                      alt="Study Session" 
+                    <img
+                      src="/images/michael-marsh-U0dBV_QeiYk-unsplash.jpg"
+                      alt="Study Session"
                       className={`w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-1000 ${currentSlide === 5 ? 'opacity-100' : 'opacity-0'}`}
                     />
-                    <img 
-                      src="/images/parker-gibbons-kfwPJieZVwI-unsplash.jpg" 
-                      alt="University Campus" 
+                    <img
+                      src="/images/parker-gibbons-kfwPJieZVwI-unsplash.jpg"
+                      alt="University Campus"
                       className={`w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-1000 ${currentSlide === 6 ? 'opacity-100' : 'opacity-0'}`}
                     />
                   </div>
-                  
+
                   {/* Slide indicators */}
                   <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-10">
-                    <button 
-                      className={`w-3 h-3 rounded-full transition-all ${currentSlide === 0 ? 'bg-white' : 'bg-white/80 hover:bg-white'}`} 
+                    <button
+                      className={`w-3 h-3 rounded-full transition-all ${currentSlide === 0 ? 'bg-white' : 'bg-white/80 hover:bg-white'}`}
                       onClick={() => goToSlide(0)}
                     ></button>
-                    <button 
-                      className={`w-3 h-3 rounded-full transition-all ${currentSlide === 1 ? 'bg-white' : 'bg-white/80 hover:bg-white'}`} 
+                    <button
+                      className={`w-3 h-3 rounded-full transition-all ${currentSlide === 1 ? 'bg-white' : 'bg-white/80 hover:bg-white'}`}
                       onClick={() => goToSlide(1)}
                     ></button>
-                    <button 
-                      className={`w-3 h-3 rounded-full transition-all ${currentSlide === 2 ? 'bg-white' : 'bg-white/80 hover:bg-white'}`} 
+                    <button
+                      className={`w-3 h-3 rounded-full transition-all ${currentSlide === 2 ? 'bg-white' : 'bg-white/80 hover:bg-white'}`}
                       onClick={() => goToSlide(2)}
                     ></button>
-                    <button 
-                      className={`w-3 h-3 rounded-full transition-all ${currentSlide === 3 ? 'bg-white' : 'bg-white/80 hover:bg-white'}`} 
+                    <button
+                      className={`w-3 h-3 rounded-full transition-all ${currentSlide === 3 ? 'bg-white' : 'bg-white/80 hover:bg-white'}`}
                       onClick={() => goToSlide(3)}
                     ></button>
-                    <button 
-                      className={`w-3 h-3 rounded-full transition-all ${currentSlide === 4 ? 'bg-white' : 'bg-white/80 hover:bg-white'}`} 
+                    <button
+                      className={`w-3 h-3 rounded-full transition-all ${currentSlide === 4 ? 'bg-white' : 'bg-white/80 hover:bg-white'}`}
                       onClick={() => goToSlide(4)}
                     ></button>
-                    <button 
-                      className={`w-3 h-3 rounded-full transition-all ${currentSlide === 5 ? 'bg-white' : 'bg-white/80 hover:bg-white'}`} 
+                    <button
+                      className={`w-3 h-3 rounded-full transition-all ${currentSlide === 5 ? 'bg-white' : 'bg-white/80 hover:bg-white'}`}
                       onClick={() => goToSlide(5)}
                     ></button>
-                    <button 
-                      className={`w-3 h-3 rounded-full transition-all ${currentSlide === 6 ? 'bg-white' : 'bg-white/80 hover:bg-white'}`} 
+                    <button
+                      className={`w-3 h-3 rounded-full transition-all ${currentSlide === 6 ? 'bg-white' : 'bg-white/80 hover:bg-white'}`}
                       onClick={() => goToSlide(6)}
                     ></button>
                   </div>
                 </div>
               </div>
-              
-              <button 
+
+              <button
                 className="absolute right-0 z-20 bg-white/80 backdrop-blur-sm rounded-full p-3 shadow-lg hover:bg-white transition-all"
                 style={{ color: `rgb(${brand.indigo})`, transform: 'translateX(50%)' }}
                 onClick={nextSlide}
@@ -287,13 +226,13 @@ export default function Landing() {
               </button>
             </div>
           </div>
-      </section>
+        </section>
 
-      {/* --- Problem Statement Section --- */}
+        {/* --- Problem Statement Section --- */}
         <section className="py-12 sm:py-16 border-b border-slate-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="text-center mb-8 sm:mb-12">
-              <p className="font-semibold text-sm" style={{color: `rgb(${brand.indigo})`}}>SOLVING A CRITICAL CHALLENGE</p>
+              <p className="font-semibold text-sm" style={{ color: `rgb(${brand.indigo})` }}>SOLVING A CRITICAL CHALLENGE</p>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mt-2">The Alumni Data Management Problem</h2>
             </div>
             <div className="grid lg:grid-cols-3 gap-6 sm:gap-8">
@@ -332,17 +271,17 @@ export default function Landing() {
         <section className="py-12 sm:py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <div className="text-center lg:text-left">
-              <p className="font-semibold text-sm" style={{color: `rgb(${brand.indigo})`}}>SIH 2025 SOLUTION</p>
+              <p className="font-semibold text-sm" style={{ color: `rgb(${brand.indigo})` }}>SIH 2025 SOLUTION</p>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mt-2">Digital Alumni Platform</h2>
               <p className="mt-4 text-slate-600 text-sm sm:text-base">Our platform addresses the critical need for centralized alumni data management, providing institutions with tools to strengthen relationships, track career progress, and facilitate meaningful connections.</p>
             </div>
             <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
-              <ValueProp icon={<Database className="w-5 h-5" style={{color: `rgb(${brand.indigo})`}} />}>Centralized Data Management</ValueProp>
-              <ValueProp icon={<ShieldCheck className="w-5 h-5" style={{color: `rgb(${brand.indigo})`}} />}>Secure & Private Platform</ValueProp>
-              <ValueProp icon={<TrendingUp className="w-5 h-5" style={{color: `rgb(${brand.indigo})`}} />}>Career Progress Tracking</ValueProp>
-              <ValueProp icon={<CalendarDays className="w-5 h-5" style={{color: `rgb(${brand.indigo})`}} />}>Event Management System</ValueProp>
-              <ValueProp icon={<Users className="w-5 h-5" style={{color: `rgb(${brand.indigo})`}} />}>Networking & Communication</ValueProp>
-              <ValueProp icon={<Award className="w-5 h-5" style={{color: `rgb(${brand.indigo})`}} />}>Alumni Engagement</ValueProp>
+              <ValueProp icon={<Database className="w-5 h-5" style={{ color: `rgb(${brand.indigo})` }} />}>Centralized Data Management</ValueProp>
+              <ValueProp icon={<ShieldCheck className="w-5 h-5" style={{ color: `rgb(${brand.indigo})` }} />}>Secure & Private Platform</ValueProp>
+              <ValueProp icon={<TrendingUp className="w-5 h-5" style={{ color: `rgb(${brand.indigo})` }} />}>Career Progress Tracking</ValueProp>
+              <ValueProp icon={<CalendarDays className="w-5 h-5" style={{ color: `rgb(${brand.indigo})` }} />}>Event Management System</ValueProp>
+              <ValueProp icon={<Users className="w-5 h-5" style={{ color: `rgb(${brand.indigo})` }} />}>Networking & Communication</ValueProp>
+              <ValueProp icon={<Award className="w-5 h-5" style={{ color: `rgb(${brand.indigo})` }} />}>Alumni Engagement</ValueProp>
             </div>
           </div>
         </section>
@@ -400,20 +339,20 @@ export default function Landing() {
           <div className="max-w-4xl mx-auto px-4 sm:px-6">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-12 sm:mb-16">Implementation Process</h2>
             <div className="space-y-12 sm:space-y-16">
-              <TimelineItem 
-                number="1" 
-                title="Centralized Data Setup" 
-                description="Import existing alumni data from scattered sources, set up institutional profiles, and configure secure access controls." 
+              <TimelineItem
+                number="1"
+                title="Centralized Data Setup"
+                description="Import existing alumni data from scattered sources, set up institutional profiles, and configure secure access controls."
               />
-              <TimelineItem 
-                number="2" 
-                title="Alumni Verification & Onboarding" 
-                description="Verify alumni credentials through secure channels and guide users through profile completion and privacy settings." 
+              <TimelineItem
+                number="2"
+                title="Alumni Verification & Onboarding"
+                description="Verify alumni credentials through secure channels and guide users through profile completion and privacy settings."
               />
-              <TimelineItem 
-                number="3" 
-                title="Engagement & Relationship Building" 
-                description="Launch communication campaigns, connect alumni with current students, and track engagement and career outcomes." 
+              <TimelineItem
+                number="3"
+                title="Engagement & Relationship Building"
+                description="Launch communication campaigns, connect alumni with current students, and track engagement and career outcomes."
               />
             </div>
           </div>
@@ -428,29 +367,29 @@ export default function Landing() {
             </div>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
               <div className="text-center">
-                <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 rounded-full flex items-center justify-center" style={{background: '#9966CC'}}>
-                  <GraduationCap className="w-6 h-6 sm:w-8 sm:h-8" style={{color: `rgb(${brand.indigo})`}} />
+                <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 rounded-full flex items-center justify-center" style={{ background: '#9966CC' }}>
+                  <GraduationCap className="w-6 h-6 sm:w-8 sm:h-8" style={{ color: `rgb(${brand.indigo})` }} />
                 </div>
                 <h3 className="font-semibold text-slate-900 mb-2 text-sm sm:text-base">Alumni</h3>
                 <p className="text-xs sm:text-sm text-slate-600">Professional networking, career opportunities, and institutional connection</p>
               </div>
               <div className="text-center">
-                <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 rounded-full flex items-center justify-center" style={{background: `rgba(${brand.coral}, 0.1)`}}>
-                  <Users className="w-6 h-6 sm:w-8 sm:h-8" style={{color: `rgb(${brand.coral})`}} />
+                <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 rounded-full flex items-center justify-center" style={{ background: `rgba(${brand.coral}, 0.1)` }}>
+                  <Users className="w-6 h-6 sm:w-8 sm:h-8" style={{ color: `rgb(${brand.coral})` }} />
                 </div>
                 <h3 className="font-semibold text-slate-900 mb-2 text-sm sm:text-base">Current Students</h3>
                 <p className="text-xs sm:text-sm text-slate-600">Mentorship access, internship opportunities, and career guidance</p>
               </div>
               <div className="text-center">
-                <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 rounded-full flex items-center justify-center" style={{background: `rgba(${brand.lilac}, 0.1)`}}>
-                  <Building2 className="w-6 h-6 sm:w-8 sm:h-8" style={{color: `rgb(${brand.lilac})`}} />
+                <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 rounded-full flex items-center justify-center" style={{ background: `rgba(${brand.lilac}, 0.1)` }}>
+                  <Building2 className="w-6 h-6 sm:w-8 sm:h-8" style={{ color: `rgb(${brand.lilac})` }} />
                 </div>
                 <h3 className="font-semibold text-slate-900 mb-2 text-sm sm:text-base">Institutions</h3>
                 <p className="text-xs sm:text-sm text-slate-600">Enhanced reputation, fundraising capabilities, and alumni engagement</p>
               </div>
               <div className="text-center">
-                <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 rounded-full flex items-center justify-center" style={{background: '#9966CC'}}>
-                  <Briefcase className="w-6 h-6 sm:w-8 sm:h-8" style={{color: `rgb(${brand.indigo})`}} />
+                <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 rounded-full flex items-center justify-center" style={{ background: '#9966CC' }}>
+                  <Briefcase className="w-6 h-6 sm:w-8 sm:h-8" style={{ color: `rgb(${brand.indigo})` }} />
                 </div>
                 <h3 className="font-semibold text-slate-900 mb-2 text-sm sm:text-base">Recruiters</h3>
                 <p className="text-xs sm:text-sm text-slate-600">Access to verified talent pipeline and institutional partnerships</p>
@@ -477,7 +416,7 @@ export default function Landing() {
               {/* Column 1: Brand and Social */}
               <div className="sm:col-span-2 lg:col-span-1">
                 <div className="text-lg font-extrabold"
-                     style={{ color: '#c25f3a' }}>
+                  style={{ color: '#c25f3a' }}>
                   AlumConnect
                 </div>
                 <p className="mt-2 text-sm">SIH 2025 Solution for Digital Platform for Centralized Alumni Data Management and Engagement</p>

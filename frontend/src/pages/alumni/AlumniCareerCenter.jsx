@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import AlumniNavbar from "../../layouts/AlumniNavbar";
+import AlumniNavbar from "../../components/navigation/AlumniNavbar";
 import { jobPostings } from "../../data/jobs";
 import { mockMentors, mockResources, mockStartups, mockProjects } from "../../data/careerData";
 import { getCurrentUser } from "../../utils/auth";

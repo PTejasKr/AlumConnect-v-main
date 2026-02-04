@@ -7,11 +7,11 @@ import Contacts from "./pages/Contacts";
 import AuthPage from "./pages/AuthPage";
 import CollegeRegistrationPage from "./pages/CollegeRegistrationPage";
 import AdminLoginPage from "./pages/admin/AdminLogin";
-import AdminLayout from "./pages/admin/AdminLayout";
+import AdminLayout from "./layouts/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminEvents from "./pages/admin/AdminEvents";
 import StatsPage from "./pages/admin/StatsPage";
-import ProtectedAdminRoute from "./pages/admin/ProtectedAdminRoute";
+import ProtectedAdminRoute from "./components/auth/ProtectedAdminRoute";
 
 // Alumni Portal
 import AlumniDashboard from "./pages/alumni/AlumniDashboard";
@@ -30,7 +30,7 @@ import StudentCareerCenter from "./pages/student/StudentCareerCenter";
 import StudentNetwork from "./pages/student/StudentNetwork";
 
 // Protected Route Component
-import ProtectedRoute from "./components/ProtectedRoute";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 
 
 export default function App() {

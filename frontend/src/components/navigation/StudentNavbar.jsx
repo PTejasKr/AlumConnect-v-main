@@ -1,15 +1,15 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
-  GraduationCap, Home, Users, Calendar, Briefcase, User, 
+  GraduationCap, Home, Users, Calendar, Briefcase, User,
   LogOut, Menu, X, Bell
 } from "lucide-react";
-import { logout, getCurrentUser } from "../utils/auth";
+import { logout, getCurrentUser } from "../../utils/auth";
 
 const brand = {
   indigo: '153 102 204',   // #9966CC
-  lilac:  '196 160 255',  // #C4A0FF
-  coral:  '255 145 120',  // #FF9178
+  lilac: '196 160 255',  // #C4A0FF
+  coral: '255 145 120',  // #FF9178
 };
 
 export default function StudentNavbar() {
@@ -62,8 +62,8 @@ export default function StudentNavbar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/student/dashboard" className="flex items-center gap-2">
-            <GraduationCap 
-              className="w-8 h-8" 
+            <GraduationCap
+              className="w-8 h-8"
               style={{ color: `rgb(${brand.indigo})` }}
             />
             <span
@@ -83,12 +83,11 @@ export default function StudentNavbar() {
                 <Link
                   key={item.name}
                   to={item.href}
-                  className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
-                    isActive
+                  className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all ${isActive
                       ? 'text-white shadow-lg'
                       : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
-                  }`}
-                  style={isActive 
+                    }`}
+                  style={isActive
                     ? { backgroundColor: '#9966CC' }
                     : {}
                   }
@@ -104,7 +103,7 @@ export default function StudentNavbar() {
           <div className="hidden md:flex items-center gap-4">
             {/* Notification Button with Dropdown */}
             <div className="relative" ref={notificationRef}>
-              <button 
+              <button
                 onClick={() => setShowNotifications(!showNotifications)}
                 className="p-2 text-slate-600 hover:text-slate-900 relative"
               >
@@ -115,13 +114,13 @@ export default function StudentNavbar() {
                   </span>
                 )}
               </button>
-              
+
               {showNotifications && (
                 <div className="absolute top-12 right-0 w-80 bg-white border border-slate-200 rounded-xl shadow-lg p-4 z-50">
                   <div className="flex justify-between items-center mb-4">
                     <h3 className="font-bold text-lg text-slate-900">Notifications</h3>
-                    <button 
-                      onClick={() => setNotifications(prev => prev.map(n => ({...n, unread: false})))}
+                    <button
+                      onClick={() => setNotifications(prev => prev.map(n => ({ ...n, unread: false })))}
                       className="text-sm text-indigo-600 hover:text-indigo-800 transition-colors"
                     >
                       Mark all as read
@@ -142,13 +141,13 @@ export default function StudentNavbar() {
                 </div>
               )}
             </div>
-            
+
             <div className="flex items-center gap-3">
               <Link to="/student/profile" className="text-right">
                 <p className="text-sm font-medium text-slate-900">{user?.name}</p>
                 <p className="text-xs text-slate-500">Student</p>
               </Link>
-              <Link 
+              <Link
                 to="/student/profile"
                 className="w-8 h-8 rounded-full flex items-center justify-center text-white font-semibold text-sm"
                 style={{ backgroundColor: '#9966CC' }}
@@ -207,7 +206,7 @@ export default function StudentNavbar() {
                 )}
               </div>
             )}
-            
+
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive = location.pathname === item.href;
@@ -216,12 +215,11 @@ export default function StudentNavbar() {
                   key={item.name}
                   to={item.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`flex items-center gap-3 px-4 py-3 rounded-lg text-base font-medium transition-all ${
-                    isActive
+                  className={`flex items-center gap-3 px-4 py-3 rounded-lg text-base font-medium transition-all ${isActive
                       ? 'text-white shadow-lg'
                       : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
-                  }`}
-                  style={isActive 
+                    }`}
+                  style={isActive
                     ? { backgroundColor: '#9966CC' }
                     : {}
                   }
@@ -231,7 +229,7 @@ export default function StudentNavbar() {
                 </Link>
               );
             })}
-            
+
             <div className="border-t border-slate-200 pt-2 mt-2">
               <Link
                 to="/student/profile"
@@ -241,7 +239,7 @@ export default function StudentNavbar() {
                 <User className="w-5 h-5" />
                 Profile
               </Link>
-              
+
               <button
                 onClick={() => {
                   handleLogout();
@@ -259,4 +257,3 @@ export default function StudentNavbar() {
     </nav>
   );
 }
-   

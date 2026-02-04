@@ -1,5 +1,5 @@
 import { useState } from "react";
-import AlumniNavbar from "../../layouts/AlumniNavbar";
+import AlumniNavbar from "../../components/navigation/AlumniNavbar";
 import { recentEvents } from "../../data/adminMockData";
 import { getCurrentUser } from "../../utils/auth";
 import sponsorQR from "../../assets/sponsorqr.jpeg";

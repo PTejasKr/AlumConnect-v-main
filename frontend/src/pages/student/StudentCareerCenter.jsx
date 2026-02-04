@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import StudentNavbar from "../../layouts/StudentNavbar";
+import StudentNavbar from "../../components/navigation/StudentNavbar";
 import { jobPostings } from "../../data/jobs";
 import { mockMentors, mockResources, mockStartups, mockProjects } from "../../data/careerData";
 import { getCurrentUser } from "../../utils/auth";
